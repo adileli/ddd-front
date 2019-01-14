@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import store from './store'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   mode: 'history',
@@ -11,15 +11,50 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: () => import('./views/projects.vue')
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
+      path: '/login',
+      name: 'login',
+      component: () => import('./views/login.vue'),
+      beforeEnter: (to, from, next) => {
+        store.watch(store.getters['auth/getUserLoginStatus'], function () {
+          if (store.state.auth.user_is_login) {
+            next('/')
+          }
+        });
+        next()
+      },
+    },
+    {
+      path: '/projects',
+      name: 'projects-list',
+      component: () => import('./views/projects.vue')
+    },
+    {
+        path: '/project/:id',
+        name: 'project',
+        component: () => import('./views/project/project.vue'),
+        meta: {requireAuth: true},
+        children: [
+            {
+              path: 'dashboard',
+              name: 'dashboard',
+              components: {'project-view': () => import('./views/project/dashboard.vue')},
+              meta: {requireAuth: true},
+            },
+            {
+              path: 'demand',
+              name: 'demand',
+              components: {'project-view': () => import('./views/project/demand.vue')},
+              meta: {requireAuth: true},
+            },
+          ]
+    },
+    {
+      path: '/*',
+      name: 'not-found',
+      component: () => import('./views/404.vue')
+    },
   ]
 })
