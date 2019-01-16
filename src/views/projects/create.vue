@@ -23,8 +23,7 @@
                 </v-flex>
 
                 <v-flex xs12>
-                    <v-btn :color="primary_color_kebab || this.$store.state.primary_color" @click="createProject" dark>创建</v-btn>
-
+                    <v-btn :color="primary_color_kebab || this.$store.state.primary_color" @click="createProject" class="darken-2" dark>创建</v-btn>
                 </v-flex>
             </v-layout>
         </v-container>

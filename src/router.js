@@ -4,6 +4,22 @@ import store from './store'
 
 Vue.use(Router);
 
+function requireAuth(to, from, next) {
+  if (!store.state.auth.user_is_login) {
+    store.dispatch('auth/loadUser').then(function (res) {
+        if (res) {
+          next();
+        } else {
+          next('/login');
+        }
+    });
+  } else {
+    next();
+  }
+
+  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+}
+
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -35,20 +51,28 @@ export default new Router({
         path: '/project/:id',
         name: 'project',
         component: () => import('./views/project/project.vue'),
-        meta: {requireAuth: true},
+        beforeEnter: requireAuth,
         children: [
             {
               path: 'dashboard',
               name: 'dashboard',
               components: {'project-view': () => import('./views/project/dashboard.vue')},
-              meta: {requireAuth: true},
             },
             {
               path: 'demand',
               name: 'demand',
               components: {'project-view': () => import('./views/project/demand.vue')},
-              meta: {requireAuth: true},
             },
+          {
+            path: 'develop',
+            name: 'develop',
+            components: {'project-view': () => import('./views/project/develop.vue')},
+          },
+          {
+            path: 'debug',
+            name: 'debug',
+            components: {'project-view': () => import('./views/project/debug.vue')},
+          },
           ]
     },
     {

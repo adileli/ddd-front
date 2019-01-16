@@ -20,18 +20,7 @@ Vue.config.productionTip = false;
 window.axios = axios;
 window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
-router.beforeEach((to, from, next) => {
-  if (to.meta.requireAuth) {
-    window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-
-    if (store.state.auth.user_is_login) {
-      next();
-    } else {
-      next('/login');
-    }
-  }
-  next();
-});
+store.dispatch('auth/loadUser');
 
 new Vue({
   router,

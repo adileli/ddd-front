@@ -29,7 +29,7 @@
                         <v-tabs v-model="tabs" centered color="transparent">
                             <v-tab href="#projects"><v-icon>list</v-icon>项目列表</v-tab>
                             <v-tab href="#members"><v-icon>people</v-icon>人员列表</v-tab>
-                            <v-tab href="#create-project"><v-icon>add</v-icon>创建项目</v-tab>
+                            <v-tab href="#create-project" v-if="this.$store.state.auth.user_is_login"><v-icon>add</v-icon>创建项目</v-tab>
                             <v-tabs-slider :color="this.$store.state.primary_color"></v-tabs-slider>
                         </v-tabs>
                     </v-toolbar>

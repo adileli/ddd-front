@@ -3,11 +3,15 @@ import projectsApi from '../api/projects.js';
 export default {
     namespaced: true,
     state: {
+        drawer: false,
         all: [],
         project: {}
     },
     getters: {},
     actions: {
+        toggleDrawer({commit}) {
+            commit('toggleDrawer');
+        },
         getAllProjects ({ commit }) {
             return projectsApi.getProjects()
                 .then(function (response) {
@@ -70,6 +74,9 @@ export default {
         },
         setProject(state, project) {
             state.project = project
+        },
+        toggleDrawer(state) {
+            state.drawer = !state.drawer;
         }
     }
 }

@@ -51,7 +51,7 @@
                     .then(response => {
                         if (response.errors) {
                             let error_message = response.errors.email[0] || response.errors.password[0];
-                            this.$store.dispatch('showSnackbar', {show: true, text: error_message});
+                            this.$store.dispatch('showSnackbar', {show: true, text: error_message, color:'error'});
                             return false;
                         } else {
                             this.$router.push({name:'home'});

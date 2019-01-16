@@ -10,9 +10,6 @@
   import LoadingBar from "./components/loading-bar";
   export default {
     components: {LoadingBar, Snackbar},
-    created() {
-      this.$store.dispatch('auth/loadUser');
-    },
     data() {
       return {
         dialog: true

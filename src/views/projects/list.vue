@@ -1,9 +1,9 @@
 <template>
     <div id="projects-list">
         <v-flex v-for="project in projects" :key="project.id">
-            <v-card :class="project.primary_color" :to="{name: 'dashboard', params:{id:project.id}}">
+            <v-card :class="project.primary_color" :to="{name: 'dashboard', params:{id:project.id}}" class="darken-2" dark>
                 <v-card-title>
-                    <span class="title font-weight-light white--text">{{project.name}}</span>
+                    <span class="title font-weight-light">{{project.name}}</span>
                     <v-spacer></v-spacer>
                     <v-btn @click.stop.prevent="openDeleteProjectDialog(project)" small icon dark style="opacity: .6">
                         <v-icon>close</v-icon>
@@ -64,6 +64,7 @@
                 this.$store.dispatch('projects/deleteProject', id);
                 this.project_name = '';
                 this.project_id = '';
+                this.confifm_project_name = '';
                 this.dialog = false;
             },
             openDeleteProjectDialog(project) {

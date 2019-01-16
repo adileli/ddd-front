@@ -40,10 +40,13 @@ export default {
                 .then(response => {
                     if (response.data) {
                         dispatch('loginUser', response.data);
+                        return true;
                     }
+                    return false;
                 })
                 .catch(response => {
                     dispatch('logoutUser');
+                    return false
                 })
         },
         loginUser({commit}, user) {

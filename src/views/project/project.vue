@@ -7,20 +7,36 @@
                         <v-icon>home</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
-                        <v-list-tile-title>项目详情</v-list-tile-title>
+                        <v-list-tile-title>详情</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile :to="{name: 'demand'}">
                     <v-list-tile-action>
-                        <v-icon>contact_mail</v-icon>
+                        <v-icon>assignment</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
                         <v-list-tile-title>需求</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
+                <v-list-tile :to="{name: 'develop'}">
+                    <v-list-tile-action>
+                        <v-icon>list_alt</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                        <v-list-tile-title>任务</v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
+                <v-list-tile :to="{name: 'debug'}">
+                    <v-list-tile-action>
+                        <v-icon>bug_report</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                        <v-list-tile-title>Bug</v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
             </v-list>
         </v-navigation-drawer>
-        <v-toolbar :color="project.primary_color" app dark>
+        <v-toolbar :color="project.primary_color" class="darken-2" app dark>
             <v-btn icon class="hidden-lg-and-up" @click.stop="drawer = !drawer">
                 <v-icon>more_vert</v-icon>
             </v-btn>
@@ -30,8 +46,8 @@
                 返回
             </v-btn>
         </v-toolbar>
-        <v-content>
-            <v-container fluid fill-height>
+        <v-content :class="this.project.primary_color" class="lighten-5" style="min-height: 100vh;">
+            <v-container fluid>
                 <router-view name="project-view"></router-view>
             </v-container>
         </v-content>
