@@ -11,7 +11,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import('./views/projects.vue')
+      component: () => import('./views/projects/projects.vue')
     },
     {
       path: '/login',
@@ -29,7 +29,7 @@ export default new Router({
     {
       path: '/projects',
       name: 'projects-list',
-      component: () => import('./views/projects.vue')
+      component: () => import('./views/projects/projects.vue')
     },
     {
         path: '/project/:id',

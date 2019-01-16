@@ -34,9 +34,9 @@ export default {
                         dispatch('getAllProjects');
                         resolve(response.data);
                     })
-                    .catch(function (response) {
+                    .catch(function (err) {
                         commit('setProject', {});
-                        reject(response);
+                        reject(err);
                     })
             })
         },
@@ -49,16 +49,19 @@ export default {
                     commit('setProject', {});
                 })
         },
-        deleteProject({commit}, id) {
-            return projectsApi.postDeleteProject(id)
-                .then(function (response) {
-                    commit('setProject', {});
-                    commit('setProjects', []);
-                })
-                .catch(function () {
-                    commit('setProject', {});
-                    commit('setProjects', []);
-                })
+        deleteProject({dispatch, commit}, id) {
+            return new Promise((resolve, reject) => {
+                projectsApi.postDeleteProject(id)
+                    .then(function (response) {
+                        commit('setProject', {});
+                        dispatch('getAllProjects');
+                        resolve(response);
+                    })
+                    .catch(function (err) {
+                        commit('setProject', {});
+                        reject(err);
+                    })
+            });
         }
     },
     mutations: {

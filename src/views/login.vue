@@ -24,7 +24,6 @@
                 </v-layout>
             </v-container>
         </v-content>
-        <v-snackbar v-model="snackbar" color="red" top right>{{error_message}}</v-snackbar>
     </v-app>
 </template>
 <script>
@@ -32,8 +31,6 @@
         name: 'login',
         data: () => ({
             valid: false,
-            snackbar: false,
-            error_message: '',
             email: '',
             password: '',
             emailRules: [
@@ -53,9 +50,8 @@
                 this.$store.dispatch('auth/login', {'email':this.email, 'password':this.password})
                     .then(response => {
                         if (response.errors) {
-
-                            this.error_message = response.errors.email[0] || response.errors.password[0];
-                            this.snackbar = true;
+                            let error_message = response.errors.email[0] || response.errors.password[0];
+                            this.$store.dispatch('showSnackbar', {show: true, text: error_message});
                             return false;
                         } else {
                             this.$router.push({name:'home'});

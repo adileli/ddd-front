@@ -27,7 +27,6 @@
 
                 </v-flex>
             </v-layout>
-            <v-snackbar v-model="snackbar" :color="snackbar_color" top right>{{message}}</v-snackbar>
         </v-container>
     </v-form>
 </template>
@@ -50,9 +49,6 @@
                 v => (v.length <= 256) || '项目简介不能超过256位'
             ],
             primary_color: 'red',
-            message: '',
-            snackbar: false,
-            snackbar_color: 'red'
         }),
         computed: {
             colors() {
@@ -76,13 +72,11 @@
                 };
                 this.$store.dispatch('projects/createProject', project)
                     .then(() => {
-                        this.message = '创建成功';
-                        this.snackbar_color = 'success';
-                        this.snackbar = true;
+                        this.$store.dispatch('showSnackbar', {show: true, text: '创建成功', color: 'success'})
+                        this.$emit('project-created', true);
                     })
                     .catch((err) =>{
-                        this.message = '系统出错';
-                        this.snackbar = true;
+                        this.$store.dispatch('showSnackbar', {show: true, text: '系统出错', color: 'error'})
                     });
             }
         },
