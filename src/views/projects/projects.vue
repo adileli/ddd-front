@@ -6,7 +6,7 @@
 <template>
     <div id="projects">
         <v-toolbar :color="this.$store.state.primary_color" extended dark flat>
-            <v-toolbar-title>EduSoho 项目管理器</v-toolbar-title>
+            <v-toolbar-title>{{this.$appConfig.APP_NAME}}</v-toolbar-title>
             <v-spacer></v-spacer>
             <div v-if="userIsLogin">
                 <v-menu transition="slide-y-transition" offset-y>
@@ -73,6 +73,11 @@
           return {
               tabs: null
           }
+        },
+        beforeRouteEnter(to, from, next) {
+            next(vm => {
+                document.title = vm.$appConfig.APP_NAME;
+            });
         },
         computed: {
             projects() {

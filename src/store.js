@@ -20,7 +20,8 @@ export default new Vuex.Store({
     },
     loadingBar: {
       show: false,
-    }
+    },
+    drawer: true,
   },
   mutations: {
     setSnackbar (state, snackbar) {
@@ -28,6 +29,9 @@ export default new Vuex.Store({
     },
     setLoadingBar(state, loadingBar) {
       state.loadingBar = loadingBar;
+    },
+    setDrawer(state, status) {
+      state.drawer = status;
     }
   },
   actions: {

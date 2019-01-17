@@ -1,5 +1,6 @@
-var api_url = '';
-var app_url = '';
+let api_url = '';
+let app_url = '';
+let app_name = 'EduSoho 项目管理器'
 
 switch( process.env.NODE_ENV ){
     case 'development':
@@ -15,4 +16,5 @@ switch( process.env.NODE_ENV ){
 export const GLOBAL_CONFIG = {
     API_URL: api_url,
     APP_URL: app_url,
+    APP_NAME: app_name,
 };

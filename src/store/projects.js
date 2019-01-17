@@ -7,7 +7,11 @@ export default {
         all: [],
         project: {}
     },
-    getters: {},
+    getters: {
+        getProjectById: (state) => (id) => {
+            return state.all.find(project => project.id == id);
+        }
+    },
     actions: {
         toggleDrawer({commit}) {
             commit('toggleDrawer');
@@ -25,9 +29,11 @@ export default {
             return projectsApi.getProject(id)
                 .then(function (response) {
                     commit('setProject', response.data);
+                    return response.data;
                 })
                 .catch(function () {
                     commit('setProject', {});
+                    return null;
                 });
         },
         createProject({ dispatch, commit }, project) {

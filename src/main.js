@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import App from './App.vue';
+import {GLOBAL_CONFIG} from './config.js';
 
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'vuetify/dist/vuetify.min.css'
@@ -17,6 +18,7 @@ Vue.use(Vuetify, {
 });
 
 Vue.config.productionTip = false;
+Vue.prototype.$appConfig = GLOBAL_CONFIG;
 window.axios = axios;
 window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
