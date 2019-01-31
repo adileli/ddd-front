@@ -13,8 +13,8 @@
 
                 <v-flex xs6>
                     <v-radio-group v-model="visible" row label="可见度">
-                        <v-radio label="公开" value="1" :color="this.$store.state.primary_color"></v-radio>
-                        <v-radio label="私有" value="0" :color="this.$store.state.primary_color"></v-radio>
+                        <v-radio label="公开" value="1" :color="this.$store.getters['primary_color']"></v-radio>
+                        <v-radio label="私有" value="0" :color="this.$store.getters['primary_color']"></v-radio>
                     </v-radio-group>
                 </v-flex>
 
@@ -23,7 +23,7 @@
                 </v-flex>
 
                 <v-flex xs12>
-                    <v-btn :color="primary_color_kebab || this.$store.state.primary_color" @click="createProject" class="darken-2" dark>创建</v-btn>
+                    <v-btn :color="primary_color_kebab || this.$store.getters['primary_color']" @click="createProject" class="darken-2" dark>创建</v-btn>
                 </v-flex>
             </v-layout>
         </v-container>

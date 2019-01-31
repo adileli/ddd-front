@@ -5,6 +5,7 @@
                 <v-icon>more_vert</v-icon>
             </v-btn>
             <v-toolbar-title class="white--text">{{project.name}}</v-toolbar-title>
+            <v-progress-circular indeterminate size="20" width="2" v-show="loading"></v-progress-circular>
             <v-spacer></v-spacer>
             <v-btn :to="{name: 'projects-list'}" outline>
                 返回
@@ -19,12 +20,16 @@
             project: {
                 type: Object,
                 required: true
+            },
+            loading: {
+                type: Boolean,
+                required: true
             }
         },
         computed: {
             drawer: {
                 get() {
-                    return this.$store.state.drawer;
+                    return this.$store.getters['drawer'];
                 },
                 set(status) {
                     this.$store.commit('setDrawer', status);

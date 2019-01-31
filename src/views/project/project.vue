@@ -1,10 +1,20 @@
+<style>
+    .slide-left-enter-active, .slide-left-leave-active {
+        transition: all .35s cubic-bezier(.55,0,.1,1);
+    }
+    .slide-left-enter, .slide-left-leave-active {
+        transform: translate(-80vw);
+    }
+</style>
 <template>
     <div id="dashboard">
         <project-sidebar></project-sidebar>
-        <project-toolbar :project="project"></project-toolbar>
+        <project-toolbar :project="project" :loading="loading"></project-toolbar>
         <v-content :class="this.project.primary_color" class="lighten-5" style="min-height: 100vh;">
-            <v-container fluid>
-                <router-view name="project-view"></router-view>
+            <v-container fluid grid-list-md>
+                <transition name="slide-left" mode="out-in">
+                    <router-view name="project-view"></router-view>
+                </transition>
             </v-container>
         </v-content>
     </div>
@@ -33,6 +43,9 @@
             },
             project() {
                 return this.$store.state.projects.project;
+            },
+            loading() {
+                return this.$store.getters['loading'];
             }
         }
     }

@@ -1,6 +1,6 @@
 let api_url = '';
 let app_url = '';
-let app_name = 'EduSoho 项目管理器'
+let app_name = 'EduSoho 项目管理器';
 
 switch( process.env.NODE_ENV ){
     case 'development':

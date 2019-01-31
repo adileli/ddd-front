@@ -53,6 +53,7 @@ export default {
             commit('setUser', user);
             commit('setToken', user.api_token);
             commit('setUserIsLogin', true);
+            window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
         },
         logoutUser({commit}) {
             commit('setUser', {});

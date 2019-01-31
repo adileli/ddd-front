@@ -11,8 +11,8 @@
                             </v-toolbar>
                             <v-card-text>
                                 <v-form ref="form" v-model="valid" lazy-validation>
-                                    <v-text-field ref="email" v-model="email" prepend-icon="person" name="email" label="邮箱" type="email" :rules="emailRules"></v-text-field>
-                                    <v-text-field ref="password" v-model="password" prepend-icon="lock" name="password" label="密码" type="password" :rules="passwordRules"></v-text-field>
+                                    <v-text-field @keyup.enter="login" ref="email" v-model="email" prepend-icon="person" name="email" label="邮箱" type="email" :rules="emailRules"></v-text-field>
+                                    <v-text-field @keyup.enter="login" ref="password" v-model="password" prepend-icon="lock" name="password" label="密码" type="password" :rules="passwordRules"></v-text-field>
                                 </v-form>
                             </v-card-text>
                             <v-card-actions>

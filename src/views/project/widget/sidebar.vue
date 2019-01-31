@@ -10,7 +10,7 @@
                         <v-list-tile-title>详情</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
-                <v-list-tile :to="{name: 'demand'}">
+                <v-list-tile :to="{name: 'demand', params:{iteration:1}}">
                     <v-list-tile-action>
                         <v-icon>assignment</v-icon>
                     </v-list-tile-action>
@@ -18,7 +18,7 @@
                         <v-list-tile-title>需求</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
-                <v-list-tile :to="{name: 'develop'}">
+                <v-list-tile :to="{name: 'develop', params:{iteration:1}}">
                     <v-list-tile-action>
                         <v-icon>list_alt</v-icon>
                     </v-list-tile-action>
@@ -26,7 +26,7 @@
                         <v-list-tile-title>任务</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
-                <v-list-tile :to="{name: 'debug'}">
+                <v-list-tile :to="{name: 'debug', params:{iteration:1}}">
                     <v-list-tile-action>
                         <v-icon>bug_report</v-icon>
                     </v-list-tile-action>
@@ -44,7 +44,7 @@
         computed: {
             drawer: {
                 get() {
-                    return this.$store.state.drawer;
+                    return this.$store.getters['drawer'];
                 },
                 set(status) {
                     this.$store.commit('setDrawer', status);

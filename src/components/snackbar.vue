@@ -25,7 +25,7 @@
         name: 'snackbar',
         computed: {
             snackbar() {
-                return this.$store.state.snackbar
+                return this.$store.getters['snackbar']
             }
         },
     }

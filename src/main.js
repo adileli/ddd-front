@@ -20,9 +20,12 @@ Vue.use(Vuetify, {
 Vue.config.productionTip = false;
 Vue.prototype.$appConfig = GLOBAL_CONFIG;
 window.axios = axios;
-window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
-store.dispatch('auth/loadUser');
+if (localStorage.getItem('token')) {
+  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+  store.dispatch('auth/loadUser');
+}
+console.log(store.getters);
 
 new Vue({
   router,

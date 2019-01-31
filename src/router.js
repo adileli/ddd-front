@@ -16,8 +16,6 @@ function requireAuth(to, from, next) {
   } else {
     next();
   }
-
-  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 }
 
 export default new Router({
@@ -59,17 +57,17 @@ export default new Router({
               components: {'project-view': () => import('./views/project/dashboard.vue')},
             },
             {
-              path: 'demand',
+              path: 'demand/:iteration',
               name: 'demand',
               components: {'project-view': () => import('./views/project/demand.vue')},
             },
           {
-            path: 'develop',
+            path: 'develop/:iteration',
             name: 'develop',
             components: {'project-view': () => import('./views/project/develop.vue')},
           },
           {
-            path: 'debug',
+            path: 'debug/:iteration',
             name: 'debug',
             components: {'project-view': () => import('./views/project/debug.vue')},
           },

@@ -5,12 +5,12 @@
 </style>
 <template>
     <div id="projects">
-        <v-toolbar :color="this.$store.state.primary_color" extended dark flat>
+        <v-toolbar :color="this.$store.getters['primary_color']" extended dark flat>
             <v-toolbar-title>{{this.$appConfig.APP_NAME}}</v-toolbar-title>
             <v-spacer></v-spacer>
             <div v-if="userIsLogin">
                 <v-menu transition="slide-y-transition" offset-y>
-                    <v-btn slot="activator" :color="this.$store.state.primary_color" class="lighten-3">hi, {{user.name}}</v-btn>
+                    <v-btn slot="activator" :color="this.$store.getters['primary_color']" class="lighten-3">hi, {{user.name}}</v-btn>
                     <v-list>
                         <v-list-tile>个人设置</v-list-tile>
                         <v-divider></v-divider>
@@ -30,7 +30,7 @@
                             <v-tab href="#projects"><v-icon>list</v-icon>项目列表</v-tab>
                             <v-tab href="#members"><v-icon>people</v-icon>人员列表</v-tab>
                             <v-tab href="#create-project" v-if="this.$store.state.auth.user_is_login"><v-icon>add</v-icon>创建项目</v-tab>
-                            <v-tabs-slider :color="this.$store.state.primary_color"></v-tabs-slider>
+                            <v-tabs-slider :color="this.$store.getters['primary_color']"></v-tabs-slider>
                         </v-tabs>
                     </v-toolbar>
                     <v-card-text>

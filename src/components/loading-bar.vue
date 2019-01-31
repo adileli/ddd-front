@@ -5,7 +5,7 @@
             width="300"
     >
         <v-card
-                :color="this.$store.state.primary_color"
+                :color="this.$store.getters['primary_color']"
                 dark
         >
             <v-card-text class="text-xs-center">
@@ -24,7 +24,7 @@
         name: 'loading-bar',
         computed: {
             loadingBar() {
-                return this.$store.state.loadingBar
+                return this.$store.getters['loadingBar']
             }
         },
     }
