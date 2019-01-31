@@ -29,6 +29,12 @@
 <script>
     export default {
         name: 'login',
+        created() {
+            if (this.$store.state.auth.user_is_login) {
+                this.$store.dispatch('showSnackbar', {show: true, text: '您已登陆', color: 'warning'});
+                this.$router.push({name: 'home'})
+            }
+        },
         data: () => ({
             valid: false,
             email: '',
@@ -54,6 +60,7 @@
                             this.$store.dispatch('showSnackbar', {show: true, text: error_message, color:'error'});
                             return false;
                         } else {
+                            this.$store.dispatch('showSnackbar', {show: true, text: '登陆成功', color: 'success'});
                             this.$router.push({name:'home'});
                         }
                     });
